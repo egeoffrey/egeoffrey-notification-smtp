@@ -15,10 +15,9 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from sdk.module.notification import Notification
+from sdk.python.module.notification import Notification
 
-import sdk.utils.exceptions as exception
-import sdk.constants
+import sdk.python.utils.exceptions as exception
 
 class Smtp(Notification):
     # What to do when initializing
@@ -82,7 +81,6 @@ class Smtp(Notification):
         title = self.config["subject"]
         template = self.config["template"]
         #template = template.replace("#url#",conf['gui']['url'])
-        template = template.replace("#version#", sdk.constants.VERSION)
         template = template.replace("#title#", title)
         template = template.replace("#body#", self.get_email_widget("Alert", text))
         # send the email
