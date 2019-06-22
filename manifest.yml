@@ -2,7 +2,7 @@ package: myhouse-notification-smtp
 revision: 3
 version: development
 github: myhouse-project/myhouse-notification-smtp
-dockerhub: myhouse-project/myhouse-notification-smtp
+dockerhub: myhouseproject/myhouse-notification-smtp
 description: Send out email notifications
 tags: notification email
 modules:
