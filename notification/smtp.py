@@ -27,7 +27,9 @@ class Smtp(Notification):
         # debug smtp
         self.debug_smtp = False
         # require configuration before starting up
-        self.add_configuration_listener("house", True)
+        self.config_schema = 1
+        self.add_configuration_listener("house", 1, True)
+        self.add_configuration_listener(self.fullname, "+", True)
 
     # What to do when running
     def on_start(self):
@@ -88,10 +90,12 @@ class Smtp(Notification):
 
      # What to do when receiving a new/updated configuration for this module    
     def on_configuration(self, message):
-        if message.args == "house":
-            if not self.is_valid_module_configuration(["name"], message.get_data()): return False
+        if message.args == "house" and not message.is_null:
+            if not self.is_valid_configuration(["name"], message.get_data()): return False
             self.house = message.get_data()
         # module's configuration
-        if message.args == self.fullname:
-            if not self.is_valid_module_configuration(["hostname", "port", "tls", "username", "password", "from", "to", "subject", "template"], message.get_data()): return False
+        if message.args == self.fullname and not message.is_null:
+            if message.config_schema != self.config_schema: 
+                return False
+            if not self.is_valid_configuration(["hostname", "port", "tls", "username", "password", "from", "to", "subject", "template"], message.get_data()): return False
             self.config = message.get_data()
