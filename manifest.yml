@@ -1,11 +1,12 @@
-manifest_schema: 1
-package: myhouse-notification-smtp
-revision: 4
-version: development
-github: myhouse-project/myhouse-notification-smtp
-dockerhub: myhouseproject/myhouse-notification-smtp
+branch: development
 description: Send out email notifications
-tags: notification email
+dockerhub: myhouseproject/myhouse-notification-smtp
+github: myhouse-project/myhouse-notification-smtp
+manifest_schema: 2
 modules:
-  - notification/smtp:
-      description: Send out email notifications
+- notification/smtp:
+    description: Send out email notifications
+package: myhouse-notification-smtp
+revision: 5
+tags: notification email
+version: 1.0
