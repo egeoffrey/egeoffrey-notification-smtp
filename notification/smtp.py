@@ -4,8 +4,8 @@
 # OS:
 # Python: 
 ## CONFIGURATION:
-# required: "hostname", "port", "tls", "username", "password", "from", "to", "subject", "template"
-# optional: 
+# required: "hostname", "port", "tls", "from", "to", "subject", "template"
+# optional: "username", "password"
 ## COMMUNICATION:
 # INBOUND: 
 # - NOTIFY: receive a notification request
@@ -71,7 +71,7 @@ class Smtp(Notification):
         # setup TLS
         if self.config["tls"]: smtp.starttls()
         # authenticate
-        if self.config["username"] != '': smtp.login(self.config["username"], self.config["password"])
+        if "username" in self.config and "password" in self.config: smtp.login(self.config["username"], self.config["password"])
         # send the message
         self.log_info("sending email '"+subject+"' to "+msg['To'])
         smtp.sendmail(self.config["from"], self.config["to"], msg.as_string())
@@ -97,5 +97,5 @@ class Smtp(Notification):
         if message.args == self.fullname and not message.is_null:
             if message.config_schema != self.config_schema: 
                 return False
-            if not self.is_valid_configuration(["hostname", "port", "tls", "username", "password", "from", "to", "subject", "template"], message.get_data()): return False
+            if not self.is_valid_configuration(["hostname", "port", "tls", "from", "to", "subject", "template"], message.get_data()): return False
             self.config = message.get_data()

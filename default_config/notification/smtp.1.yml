@@ -1,11 +1,10 @@
-hostname:
+hostname: 
 port: 25
 tls: false
 username: ""
 password: ""
-from: 
-to:
-  - youremail@domain.com
+from: ""
+to: youremail@domain.com
 subject: "Notification"
 min_severity: alert
 rate_limit: 5
