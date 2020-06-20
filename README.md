@@ -25,12 +25,13 @@ To configure each module included in this package, once started, click on the *'
   - Module configuration:
     - *from**: the email address used as the from of the message (e.g. user@email.com)
     - *hostname**: the SMTP server used to send out the email (e.g. smtp.google.com)
+    - *port**: the port of the SMTP server (e.g. 25)
     - *username*: the username for authenticating against the SMTP server (e.g. username)
     - *password*: the password for authenticating against the SMTP server (e.g. password)
     - *tls**: use TLS
     - *to**: recipient email address(es), comma separated (e.g. user@email.com)
     - *subject**: subject of the email (e.g. House Notification)
-    - *template**: template to use for the email's body
+    - *template**: template to use for the email's body (with placehoders
 
 ## Contribute
 
@@ -46,7 +47,7 @@ If you are a user willing to contribute to somebody's else package, submit your 
 
 Building is required only if you are the author of the package. To build a Docker image and automatically push it to [Docker Hub](https://hub.docker.com/r/egeoffrey/egeoffrey-notification-smtp), run the following command from within this package's directory:
 ```
-egeoffrey-cli build egeoffrey-notification-smtp <amd64|arm>
+egeoffrey-cli build egeoffrey-notification-smtp
 ```
 
 ## Uninstall
@@ -65,4 +66,4 @@ notification email
 
 ## Version
 
-The version of this egeoffrey-notification-smtp is 1.0-12 on the master branch.
+The version of this egeoffrey-notification-smtp is 1.0-13 on the master branch.
